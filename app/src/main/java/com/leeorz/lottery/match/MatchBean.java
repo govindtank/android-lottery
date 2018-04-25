@@ -1,4 +1,4 @@
-package com.leeorz.lottery.index;
+package com.leeorz.lottery.match;
 
 /**
  * author: leeorz
@@ -6,7 +6,7 @@ package com.leeorz.lottery.index;
  * created on: 2018/4/24 下午9:44
  * description:
  */
-public class Match {
+public class MatchBean {
     private int 国家图标 = -1;
     private String 国家名字 = "";//国家
     private String 比赛时间 = "";//比赛时间

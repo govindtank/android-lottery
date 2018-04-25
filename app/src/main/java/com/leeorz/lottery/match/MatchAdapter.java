@@ -1,4 +1,4 @@
-package com.leeorz.lottery.index;
+package com.leeorz.lottery.match;
 
 import android.content.Context;
 import android.view.View;
@@ -13,7 +13,7 @@ import com.leeorz.lottery.R;
  * created on: 2018/4/24 下午9:44
  * description:
  */
-public class MatchAdapter extends BaseAdapter<Match> {
+public class MatchAdapter extends BaseAdapter<MatchBean> {
     public MatchAdapter(Context context) {
         super(context);
     }

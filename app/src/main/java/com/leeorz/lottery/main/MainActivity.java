@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.leeorz.lib.base.BaseActivity;
 import com.leeorz.lottery.R;
-import com.leeorz.lottery.index.IndexFragment;
+import com.leeorz.lottery.match.MatchFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fl_content)
     FrameLayout flContent;
 
-    private Fragment indexFragment,newsFragment,personalFragment;
+    private Fragment indexFragment,newsFragment,ssqFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
 
         if(indexFragment != null && indexFragment.isAdded())transaction.hide(indexFragment);
         if(newsFragment != null && newsFragment.isAdded())transaction.hide(newsFragment);
-        if(personalFragment != null && personalFragment.isAdded())transaction.hide(personalFragment);
+        if(ssqFragment != null && ssqFragment.isAdded())transaction.hide(ssqFragment);
         if(!fragment.isAdded()){
             transaction.add(R.id.fl_content,fragment);
         }
@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity {
     private void getTargetFragment(int id) {
         switch (id) {
             case R.id.ll_tab1:
-                if(indexFragment == null)indexFragment = IndexFragment.newInstance();
+                if(indexFragment == null)indexFragment = MatchFragment.newInstance();
                 llTab1.setEnabled(false);
                 llTab2.setEnabled(true);
                 llTab3.setEnabled(true);
@@ -90,11 +90,11 @@ public class MainActivity extends BaseActivity {
                 showFragment(newsFragment);
                 break;
             case R.id.ll_tab3:
-                if(personalFragment == null)personalFragment = PersonalFragment.newInstance();
+                if(ssqFragment == null)ssqFragment = SsqFragment.newInstance();
                 llTab3.setEnabled(false);
                 llTab2.setEnabled(true);
                 llTab1.setEnabled(true);
-                showFragment(personalFragment);
+                showFragment(ssqFragment);
                 break;
         }
     }

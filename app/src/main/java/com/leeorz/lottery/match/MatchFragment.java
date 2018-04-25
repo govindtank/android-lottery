@@ -1,4 +1,4 @@
-package com.leeorz.lottery.index;
+package com.leeorz.lottery.match;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.leeorz.lib.app.AppConfig;
 import com.leeorz.lib.base.BaseFragment;
@@ -31,7 +32,7 @@ import butterknife.Unbinder;
  * created on: 2018/4/24 下午4:25
  * description:
  */
-public class IndexFragment extends BaseFragment {
+public class MatchFragment extends BaseFragment {
 
 
     Unbinder unbinder;
@@ -39,12 +40,16 @@ public class IndexFragment extends BaseFragment {
     Banner banner;
     @BindView(R.id.lv_content)
     ListView lvContent;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
-    public static IndexFragment newInstance() {
+    public static MatchFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        IndexFragment fragment = new IndexFragment();
+        MatchFragment fragment = new MatchFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,7 +58,7 @@ public class IndexFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        contentView = inflater.inflate(R.layout.fragment_index, null);
+        contentView = inflater.inflate(R.layout.fragment_match, null);
         unbinder = ButterKnife.bind(this, contentView);
         initView();
         return contentView;
@@ -63,6 +68,8 @@ public class IndexFragment extends BaseFragment {
      * 初始化控件
      */
     private void initView() {
+        tvTitle.setText("赛事");
+        ivBack.setVisibility(View.GONE);
         banner.setLayoutParams(new LinearLayout.LayoutParams(AppConfig.SCREEN_WIDTH, (int) (AppConfig.SCREEN_WIDTH * 0.5)));
         List<String> images = new ArrayList();
         images.add("http://t2.hddhhn.com/uploads/tu/201804/9999/a02d7d8d21.jpg");
@@ -75,11 +82,13 @@ public class IndexFragment extends BaseFragment {
                 .start();
 
         MatchAdapter matchAdapter = new MatchAdapter(getActivity());
-        List<Match> matchList = new ArrayList();
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
-        matchList.add(new Match());
+        List<MatchBean> matchList = new ArrayList();
+        matchList.add(new MatchBean());
+        matchList.add(new MatchBean());
+        matchList.add(new MatchBean());
+        matchList.add(new MatchBean());
+        matchList.add(new MatchBean());
+        matchList.add(new MatchBean());
         matchAdapter.setData(matchList);
         lvContent.setAdapter(matchAdapter);
     }

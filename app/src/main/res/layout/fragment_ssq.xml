@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/app_main_color">
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:paddingHorizontal="10dp"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:text="专家预测"
+            android:textSize="12sp"
+            android:textColor="@color/app_white" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:maxLines="1"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="标题"/>
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/lv_content"
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

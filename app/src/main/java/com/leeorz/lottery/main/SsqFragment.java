@@ -5,44 +5,45 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseFragment;
 import com.leeorz.lottery.R;
-import com.leeorz.lottery.news.NewsAdapter;
-import com.leeorz.lottery.news.NewsBean;
+import com.leeorz.lottery.ssq.SsqAdapter;
+import com.leeorz.lottery.ssq.SsqAnalysisActivity;
+import com.leeorz.lottery.ssq.SsqBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
  * author: leeorz
  * email:378229364@qq.com
- * created on: 2018/4/24 下午4:25
+ * created on: 2018/4/24 下午5:30
  * description:
  */
-public class NewsFragment extends BaseFragment {
+public class SsqFragment extends BaseFragment {
     @BindView(R.id.lv_content)
     ListView lvContent;
     Unbinder unbinder;
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
+    @BindView(R.id.tv_right)
+    TextView tv_right;
     @BindView(R.id.tv_title)
     TextView tvTitle;
 
-    private NewsAdapter newsAdapter;
+    private SsqAdapter ssqAdapter;
 
-    public static NewsFragment newInstance() {
+    public static SsqFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        NewsFragment fragment = new NewsFragment();
+        SsqFragment fragment = new SsqFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,7 +52,7 @@ public class NewsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        contentView = inflater.inflate(R.layout.fragment_news, null);
+        contentView = inflater.inflate(R.layout.fragment_ssq, null);
         unbinder = ButterKnife.bind(this, contentView);
         initView();
         return contentView;
@@ -61,26 +62,30 @@ public class NewsFragment extends BaseFragment {
      * 初始化控件
      */
     private void initView() {
-        tvTitle.setText("新闻");
-        ivBack.setVisibility(View.GONE);
-        newsAdapter = new NewsAdapter(getActivity());
-        List<NewsBean> newsBeanList = new ArrayList();
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
-        newsBeanList.add(new NewsBean());
+        tvTitle.setText("双色球");
+        ssqAdapter = new SsqAdapter(getActivity());
+        List<SsqBean> ssqBeanList = new ArrayList();
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
+        ssqBeanList.add(new SsqBean());
 
-        newsAdapter.setData(newsBeanList);
-        lvContent.setAdapter(newsAdapter);
+        ssqAdapter.setData(ssqBeanList);
+        lvContent.setAdapter(ssqAdapter);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.tv_right)
+    public void onViewClicked() {
+        gotoActivity(SsqAnalysisActivity.class);
     }
 }

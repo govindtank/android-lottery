@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:banner="http://schemas.android.com/tools"
     android:orientation="vertical">
+    <include layout="@layout/include_header"/>
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
     </LinearLayout>
     <ListView
         android:divider="@null"
-        android:dividerHeight="0dp"
+        android:dividerHeight="5dp"
         android:id="@+id/lv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
