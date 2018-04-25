@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import com.leeorz.lib.base.BaseActivity;
 import com.leeorz.lottery.R;
 import com.leeorz.lottery.match.MatchFragment;
+import com.leeorz.lottery.news.NewsFragment;
+import com.leeorz.lottery.ssq.SsqFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

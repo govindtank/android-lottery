@@ -14,12 +14,12 @@ public class SsqBean {
     public SsqBean() {
         this.redBall1 = "01";
         this.redBall2 = "01";
-        this.redBall3 = "01";
-        this.redBall4 = "01";
-        this.redBall5 = "01";
-        this.redBall6 = "01";
+        this.redBall3 = "31";
+        this.redBall4 = "29";
+        this.redBall5 = "18";
+        this.redBall6 = "17";
         this.blueBall1 = "01";
-        this.blueBall2 = "01";
+        this.blueBall2 = "";
     }
 
     public String getDate() {

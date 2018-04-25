@@ -1,4 +1,4 @@
-package com.leeorz.lottery.ssq;
+package com.leeorz.lottery.ssq.analysis;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -33,7 +33,7 @@ public class SsqAnalysisActivity extends BaseActivity {
     }
 
     private void initView(){
-        tvTitle.setText("专家预测");
+        tvTitle.setText("专家分析");
     }
 
     @OnClick(R.id.iv_back)

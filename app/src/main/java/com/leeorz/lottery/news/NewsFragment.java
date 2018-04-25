@@ -1,18 +1,18 @@
-package com.leeorz.lottery.main;
+package com.leeorz.lottery.news;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseFragment;
 import com.leeorz.lottery.R;
-import com.leeorz.lottery.news.NewsAdapter;
-import com.leeorz.lottery.news.NewsBean;
+import com.leeorz.lottery.WebActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +76,13 @@ public class NewsFragment extends BaseFragment {
 
         newsAdapter.setData(newsBeanList);
         lvContent.setAdapter(newsAdapter);
+        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                WebActivity.gotoThis(getContext(),"百度","https://www.baidu.com");
+                WebActivity.gotoThis(getContext(),"百度","http://sports.sina.com.cn/l/tubiao/ssqhongqiuzoushi.html?from=wap");
+            }
+        });
     }
 
     @Override

@@ -1,18 +1,18 @@
-package com.leeorz.lottery.main;
+package com.leeorz.lottery.ssq;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseFragment;
 import com.leeorz.lottery.R;
-import com.leeorz.lottery.ssq.SsqAdapter;
-import com.leeorz.lottery.ssq.SsqAnalysisActivity;
-import com.leeorz.lottery.ssq.SsqBean;
+import com.leeorz.lottery.ssq.analysis.SsqAnalysisActivity;
+import com.leeorz.lottery.ssq.detail.SsqDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +76,12 @@ public class SsqFragment extends BaseFragment {
 
         ssqAdapter.setData(ssqBeanList);
         lvContent.setAdapter(ssqAdapter);
+        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SsqDetailActivity.gotoThis(getContext());
+            }
+        });
     }
 
     @Override
