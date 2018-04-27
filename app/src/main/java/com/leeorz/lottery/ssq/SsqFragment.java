@@ -1,5 +1,6 @@
 package com.leeorz.lottery.ssq;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseFragment;
+import com.leeorz.lib.utils.UnitUtil;
+import com.leeorz.lib.widget.refresh.RefreshListView;
 import com.leeorz.lottery.R;
 import com.leeorz.lottery.ssq.analysis.SsqAnalysisActivity;
 import com.leeorz.lottery.ssq.detail.SsqDetailActivity;
@@ -30,7 +33,7 @@ import butterknife.Unbinder;
  */
 public class SsqFragment extends BaseFragment {
     @BindView(R.id.lv_content)
-    ListView lvContent;
+    RefreshListView lvContent;
     Unbinder unbinder;
     @BindView(R.id.tv_right)
     TextView tv_right;
@@ -75,11 +78,16 @@ public class SsqFragment extends BaseFragment {
         ssqBeanList.add(new SsqBean());
 
         ssqAdapter.setData(ssqBeanList);
-        lvContent.setAdapter(ssqAdapter);
-        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvContent.setListSelector(new BitmapDrawable());
+        lvContent.setDivider(null);
+        lvContent.setDividerHeight(UnitUtil.dp2px(getActivity(),2));
+        lvContent.getRefreshListView().setAdapter(ssqAdapter);
+        lvContent.getRefreshListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SsqDetailActivity.gotoThis(getContext());
+                if(position != ssqAdapter.getCount()) {
+                    SsqDetailActivity.gotoThis(getContext());
+                }
             }
         });
     }

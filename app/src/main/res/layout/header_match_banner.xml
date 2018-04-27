@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/app_white"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/ll_cold_hot_index"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:src="@mipmap/ic_index_module1"
+                android:scaleType="centerCrop"
+                android:padding="3dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:textColor="@color/app_main_color"
+                android:textSize="12sp"
+                android:text="冷热指数"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_remind"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:src="@mipmap/ic_index_module2"
+                android:scaleType="centerCrop"
+                android:padding="3dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:textColor="@color/app_main_color"
+                android:textSize="12sp"
+                android:text="提点-单双"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_dynamic"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:src="@mipmap/ic_index_module3"
+                android:scaleType="centerCrop"
+                android:padding="3dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:textColor="@color/app_main_color"
+                android:textSize="12sp"
+                android:text="动态同赔"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <View style="@style/vDriver"/>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:background="@color/app_white"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/app_black"
+            android:text="最新赛况"/>
+    </LinearLayout>
+    <View style="@style/vDriver"/>
+</LinearLayout>

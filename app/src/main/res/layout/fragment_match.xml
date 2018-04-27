@@ -5,24 +5,15 @@
     xmlns:banner="http://schemas.android.com/tools"
     android:orientation="vertical">
     <include layout="@layout/include_header"/>
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="150dp" />
-    <LinearLayout
-        android:background="@color/app_white"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:text="最新赛况"/>
-    </LinearLayout>
-    <ListView
-        android:divider="@null"
-        android:dividerHeight="5dp"
+
+    <!--<ListView-->
+        <!--android:divider="@null"-->
+        <!--android:dividerHeight="5dp"-->
+        <!--android:id="@+id/lv_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+
+    <com.leeorz.lib.widget.refresh.RefreshListView
         android:id="@+id/lv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

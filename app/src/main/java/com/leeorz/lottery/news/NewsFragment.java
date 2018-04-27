@@ -1,5 +1,6 @@
 package com.leeorz.lottery.news;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseFragment;
+import com.leeorz.lib.utils.UnitUtil;
+import com.leeorz.lib.widget.refresh.RefreshListView;
 import com.leeorz.lottery.R;
 import com.leeorz.lottery.WebActivity;
 
@@ -29,7 +32,7 @@ import butterknife.Unbinder;
  */
 public class NewsFragment extends BaseFragment {
     @BindView(R.id.lv_content)
-    ListView lvContent;
+    RefreshListView lvContent;
     Unbinder unbinder;
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -75,12 +78,18 @@ public class NewsFragment extends BaseFragment {
         newsBeanList.add(new NewsBean());
 
         newsAdapter.setData(newsBeanList);
-        lvContent.setAdapter(newsAdapter);
-        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvContent.setListSelector(new BitmapDrawable());
+        lvContent.setDivider(null);
+        lvContent.setDividerHeight(UnitUtil.dp2px(getActivity(),2));
+        lvContent.getRefreshListView().setAdapter(newsAdapter);
+        lvContent.getRefreshListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                WebActivity.gotoThis(getContext(),"百度","https://www.baidu.com");
-                WebActivity.gotoThis(getContext(),"百度","http://sports.sina.com.cn/l/tubiao/ssqhongqiuzoushi.html?from=wap");
+                if(position != newsAdapter.getCount()){
+                    WebActivity.gotoThis(getContext(),"百度","http://sports.sina.com.cn/l/tubiao/ssqhongqiuzoushi.html?from=wap");
+                }
+
             }
         });
     }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/include_header"/>
+    <!--android:dividerHeight="0.5dp"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingVertical="5dp"
+        android:background="@color/app_driver"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textColor="@color/app_gray"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:text="比赛"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+        <TextView
+            android:textColor="@color/app_gray"
+            android:gravity="center"
+            android:text="成交价"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+        <TextView
+            android:textColor="@color/app_gray"
+            android:gravity="center"
+            android:text="交易量"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+        <TextView
+            android:text="比例"
+            android:textColor="@color/app_gray"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_content"
+        android:divider="@null"
+        android:dividerHeight="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

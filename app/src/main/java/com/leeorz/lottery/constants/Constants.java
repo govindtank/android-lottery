@@ -9,4 +9,5 @@ package com.leeorz.lottery.constants;
 public class Constants {
     public static final String KEY_TITLE = "KEY_TITLE";
     public static final String KEY_URL = "KEY_URL";
+    public static final String KEY_FID = "KEY_FID";
 }

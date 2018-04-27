@@ -29,11 +29,16 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.fl_content)
     FrameLayout flContent;
 
-    private Fragment indexFragment,newsFragment,ssqFragment;
+    private Fragment matchFragment,newsFragment,ssqFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(null != savedInstanceState){
+            matchFragment = getSupportFragmentManager().findFragmentByTag(MatchFragment.class.getSimpleName());
+            newsFragment = getSupportFragmentManager().findFragmentByTag(NewsFragment.class.getSimpleName());
+            ssqFragment = getSupportFragmentManager().findFragmentByTag(SsqFragment.class.getSimpleName());
+        }
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -59,11 +64,11 @@ public class MainActivity extends BaseActivity {
     private void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        if(indexFragment != null && indexFragment.isAdded())transaction.hide(indexFragment);
+        if(matchFragment != null && matchFragment.isAdded())transaction.hide(matchFragment);
         if(newsFragment != null && newsFragment.isAdded())transaction.hide(newsFragment);
         if(ssqFragment != null && ssqFragment.isAdded())transaction.hide(ssqFragment);
         if(!fragment.isAdded()){
-            transaction.add(R.id.fl_content,fragment);
+            transaction.add(R.id.fl_content,fragment,fragment.getClass().getSimpleName());
         }
 
         transaction.show(fragment);
@@ -78,11 +83,11 @@ public class MainActivity extends BaseActivity {
     private void getTargetFragment(int id) {
         switch (id) {
             case R.id.ll_tab1:
-                if(indexFragment == null)indexFragment = MatchFragment.newInstance();
+                if(matchFragment == null)matchFragment = MatchFragment.newInstance();
                 llTab1.setEnabled(false);
                 llTab2.setEnabled(true);
                 llTab3.setEnabled(true);
-                showFragment(indexFragment);
+                showFragment(matchFragment);
                 break;
             case R.id.ll_tab2:
                 if(newsFragment == null)newsFragment = NewsFragment.newInstance();
