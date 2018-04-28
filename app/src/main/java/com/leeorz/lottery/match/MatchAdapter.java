@@ -3,9 +3,13 @@ package com.leeorz.lottery.match;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseAdapter;
 import com.leeorz.lottery.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * author: leeorz
@@ -22,18 +26,39 @@ public class MatchAdapter extends BaseAdapter<MatchBean> {
     public View getView(int position, View convertView, ViewGroup parent) {
         super.getView(position, convertView, parent);
         ViewHolder viewHolder;
-        if(convertView == null){
-            convertView = mInflater.inflate(R.layout.template_match_item,null);
-            viewHolder = new ViewHolder();
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.template_match_item, null);
+            viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        MatchBean bean = data.get(position);
+        viewHolder.tvLname.setText(bean.getLname());
+        viewHolder.tvHname.setText(bean.getHname());
+        viewHolder.tvAname.setText(bean.getAname());
+        viewHolder.tvDate.setText(bean.getVsdate());
+        viewHolder.tvHscore.setText(bean.getHscore());
+        viewHolder.tvAscore.setText(bean.getAscore());
         return convertView;
     }
 
-    private class ViewHolder{
+    static class ViewHolder {
+        @BindView(R.id.tv_lname)
+        TextView tvLname;
+        @BindView(R.id.tv_date)
+        TextView tvDate;
+        @BindView(R.id.tv_hname)
+        TextView tvHname;
+        @BindView(R.id.tv_aname)
+        TextView tvAname;
+        @BindView(R.id.tv_hscore)
+        TextView tvHscore;
+        @BindView(R.id.tv_ascore)
+        TextView tvAscore;
 
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

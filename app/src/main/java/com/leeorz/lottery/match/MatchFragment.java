@@ -1,27 +1,31 @@
 package com.leeorz.lottery.match;
 
-import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.flyco.banner.widget.Banner.base.BaseBanner;
+import com.leeorz.lib.api.API;
+import com.leeorz.lib.api.ApiCallback;
+import com.leeorz.lib.api.ApiObserver;
+import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.app.AppConfig;
 import com.leeorz.lib.base.BaseFragment;
-import com.leeorz.lib.widget.refresh.OnRefreshListener;
-import com.leeorz.lib.widget.refresh.RefreshListView;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.WebActivity;
+import com.leeorz.lottery.api.FootBallApi;
+import com.leeorz.lottery.api.FootBallApiResult;
+import com.leeorz.lottery.bean.MatchListResultBean;
 import com.leeorz.lottery.match.dynamic.DynamicCompensationActivity;
 import com.leeorz.lottery.match.remind.RemindActivity;
-import com.squareup.picasso.Picasso;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.loader.ImageLoader;
+import com.leeorz.lottery.widget.IndexBannerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * author: leeorz
@@ -36,16 +42,19 @@ import butterknife.Unbinder;
  * created on: 2018/4/24 下午4:25
  * description:
  */
-public class MatchFragment extends BaseFragment implements OnRefreshListener{
+public class MatchFragment extends BaseFragment{
 
 
     Unbinder unbinder;
     @BindView(R.id.lv_content)
-    RefreshListView lvContent;
+    ListView lvContent;
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+
+    private MatchAdapter matchAdapter;
+    private List<MatchBean> matchList = new ArrayList();
 
     public static MatchFragment newInstance() {
 
@@ -63,6 +72,7 @@ public class MatchFragment extends BaseFragment implements OnRefreshListener{
         contentView = inflater.inflate(R.layout.fragment_match, null);
         unbinder = ButterKnife.bind(this, contentView);
         initView();
+        getMatchList();
         return contentView;
     }
 
@@ -92,56 +102,72 @@ public class MatchFragment extends BaseFragment implements OnRefreshListener{
                 gotoActivity(DynamicCompensationActivity.class);
             }
         });
-        Banner banner = headerView.findViewById(R.id.banner);
+        IndexBannerView banner = headerView.findViewById(R.id.banner);
 
         banner.setLayoutParams(new LinearLayout.LayoutParams(AppConfig.SCREEN_WIDTH, (int) (AppConfig.SCREEN_WIDTH * 0.5)));
         List<String> images = new ArrayList();
-        images.add("http://t2.hddhhn.com/uploads/tu/201804/9999/a02d7d8d21.jpg");
-        images.add("http://t2.hddhhn.com/uploads/tu/201804/9999/5c46f5f236.jpg");
-        images.add("http://t2.hddhhn.com/uploads/tu/201804/9999/7076b69af7.jpg");
-        banner.setImageLoader(new BannerImageLoader());
-        banner.setImages(images);
-        banner.isAutoPlay(true);
-        banner.setIndicatorGravity(BannerConfig.CENTER)
-                .start();
+        images.add("http://res.tuiqiucai.com/template/20180427/db84228e5ae740d9ab807dd7d01434a4.jpg");
+        images.add("http://res.tuiqiucai.com/template/20180427/3d319547df97462c8932a57ca991aa47.jpg");
+        images.add("http://res.tuiqiucai.com/template/20180427/d873032d59624227bf08aba9f5c88d11.jpg");
+        banner.setSource(images);
+        banner.setOnItemClickL(new BaseBanner.OnItemClickL() {
+            @Override
+            public void onItemClick(int position) {
+                switch (position){
+                    case 0:
+                        WebActivity.gotoThis(getActivity(),"咨询详情","file:///android_asset/banner1.html");
+                        break;
+                    case 1:
+                        WebActivity.gotoThis(getActivity(),"咨询详情","file:///android_asset/banner2.html");
+                        break;
+                    case 2:
+                        WebActivity.gotoThis(getActivity(),"咨询详情","file:///android_asset/banner3.html");
+                        break;
 
-        MatchAdapter matchAdapter = new MatchAdapter(getActivity());
-        List<MatchBean> matchList = new ArrayList();
-        matchList.add(new MatchBean());
-        matchList.add(new MatchBean());
-        matchList.add(new MatchBean());
-        matchList.add(new MatchBean());
-        matchList.add(new MatchBean());
-        matchList.add(new MatchBean());
+                }
+            }
+        });
+        banner.setAutoScrollEnable(true);
+        banner.startScroll();
+
+        matchAdapter = new MatchAdapter(getActivity());
         matchAdapter.setData(matchList);
+        lvContent.addHeaderView(headerView);
+        lvContent.setAdapter(matchAdapter);
+        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                position = position - 1;
+                MatchDetailActivity.gotoThis(getActivity(),matchAdapter.getItem(position).getFid());
+            }
+        });
+    }
 
-        lvContent.getRefreshListView().addHeaderView(headerView);
-        lvContent.setListSelector(new BitmapDrawable());
-        lvContent.setDivider(null);
-        lvContent.setDividerHeight(0);
-        lvContent.getRefreshListView().setAdapter(matchAdapter);
-        lvContent.setOnRefreshListener(this);
+    private void getMatchList(){
+        FootBallApi footBallApi = API.getInstance(FootBallApi.class, FootBallApi.HOST);
+        footBallApi.getMatchList("1",FootBallApi.MATCH_LIST_KEY,String.valueOf(System.currentTimeMillis()),"3","1",FootBallApi.C_CK)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ApiObserver(new ApiCallback<MatchListResultBean>() {
+
+                    @Override
+                    public void onSuccess(ApiResult<MatchListResultBean> apiResult) {
+
+                        matchList.addAll(((MatchListResultBean) ((FootBallApiResult) apiResult).getData()).getList());
+                        matchAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFail(Throwable throwable) {
+
+                    }
+                }));
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @Override
-    public void onRefresh() {
-        lvContent.refreshComplete();
-    }
-
-    private class BannerImageLoader extends ImageLoader {
-
-        @Override
-        public void displayImage(Context context, Object path, ImageView imageView) {
-            Picasso.with(context)
-                    .load((String) path)
-                    .into(imageView);
-        }
     }
 
 }

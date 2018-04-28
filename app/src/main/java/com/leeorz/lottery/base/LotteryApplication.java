@@ -12,7 +12,7 @@ import com.leeorz.lib.base.BaseApplication;
 public class LotteryApplication extends BaseApplication{
 
     {
-//        ApiConfig.init();
+//        ApiConfig.init("http://lottery.panghailong.com/api/");
 
     }
 }

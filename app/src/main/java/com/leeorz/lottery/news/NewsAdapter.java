@@ -1,6 +1,7 @@
 package com.leeorz.lottery.news;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -39,9 +40,12 @@ public class NewsAdapter extends BaseAdapter<NewsBean> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         NewsBean bean = data.get(position);
-        Picasso.with(mContext).load(bean.getImagePath()).into(viewHolder.ivImage);
+        if(!TextUtils.isEmpty(bean.getImg())){
+            Picasso.with(mContext).load(bean.getImg()).resize(300,300).into(viewHolder.ivImage);
+        }
+
         viewHolder.tvTitle.setText(bean.getTitle());
-        viewHolder.tvDate.setText("时间:" + DateUtil.getStringByFormat(bean.getDate(),DateUtil.dateFormatYMD));
+        viewHolder.tvDate.setText("时间:" + bean.getTime());
         return convertView;
     }
 

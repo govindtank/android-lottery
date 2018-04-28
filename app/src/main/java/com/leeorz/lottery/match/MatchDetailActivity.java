@@ -13,6 +13,7 @@ import com.leeorz.lib.api.ApiCallback;
 import com.leeorz.lib.api.ApiObserver;
 import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.base.BaseActivity;
+import com.leeorz.lib.utils.ToastUtil;
 import com.leeorz.lottery.R;
 import com.leeorz.lottery.WebActivity;
 import com.leeorz.lottery.api.FootBallApi;
@@ -264,7 +265,6 @@ public class MatchDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ApiResult<MatchDetailVideoResultBean> apiResult) {
-//                        ToastUtil.showShort(getActivity(), ((FootBallApiResult) apiResult).getMsg());
                         showVideoBtn((MatchDetailVideoResultBean) ((FootBallApiResult) apiResult).getData());
 
                     }

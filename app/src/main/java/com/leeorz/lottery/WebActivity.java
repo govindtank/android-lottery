@@ -39,6 +39,13 @@ public class WebActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
+    public static void gotoThisWithContent(Context context, String title, String content) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra(Constants.KEY_TITLE, title);
+        intent.putExtra(Constants.KEY_CONTENT, content);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +59,19 @@ public class WebActivity extends BaseActivity {
         if(!TextUtils.isEmpty(title)){
             tvTitle.setText(title);
         }
+
         String url = getIntent().getStringExtra(Constants.KEY_URL);
-        webview.loadUrl(url);
+        String content = getIntent().getStringExtra(Constants.KEY_CONTENT);
+        if(!TextUtils.isEmpty(url)){
+            webview.loadUrl(url);
+        }
+
+        if(!TextUtils.isEmpty(content)){
+            webview.loadData(content,"text/html","utf-8");
+        }
+
+
+
     }
 
     @OnClick(R.id.iv_back)

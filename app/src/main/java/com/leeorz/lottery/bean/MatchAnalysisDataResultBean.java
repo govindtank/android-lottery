@@ -50,8 +50,6 @@ public class MatchAnalysisDataResultBean {
     private String roundtype;
     private String hname;
     private String aname;
-    private HpowerBean hpower;
-    private ApowerBean apower;
     private TotalBean fuck_datatotal;
     private TotalBean home_datatotal;
     private String home_desc;
@@ -153,21 +151,7 @@ public class MatchAnalysisDataResultBean {
         this.aname = aname;
     }
 
-    public HpowerBean getHpower() {
-        return hpower;
-    }
 
-    public void setHpower(HpowerBean hpower) {
-        this.hpower = hpower;
-    }
-
-    public ApowerBean getApower() {
-        return apower;
-    }
-
-    public void setApower(ApowerBean apower) {
-        this.apower = apower;
-    }
 
     public TotalBean getFuck_datatotal() {
         return fuck_datatotal;

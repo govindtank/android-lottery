@@ -9,6 +9,7 @@
         android:paddingVertical="5dp"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/tv_desc"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -16,6 +17,7 @@
             android:textColor="@color/app_black"
             android:text="一等奖"/>
         <TextView
+            android:id="@+id/tv_z"
             android:textColor="@color/app_black"
             android:gravity="center"
             android:layout_weight="1"
@@ -23,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="100"/>
         <TextView
+            android:id="@+id/tv_j"
             android:textColor="@color/app_main_color"
             android:gravity="center"
             android:layout_weight="1"

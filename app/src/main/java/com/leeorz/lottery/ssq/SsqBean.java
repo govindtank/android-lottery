@@ -1,5 +1,7 @@
 package com.leeorz.lottery.ssq;
 
+import java.util.List;
+
 /**
  * author: leeorz
  * email:378229364@qq.com
@@ -7,90 +9,58 @@ package com.leeorz.lottery.ssq;
  * description:
  */
 public class SsqBean {
-    private String date = "";
 
-    private String redBall1,redBall2,redBall3,redBall4,redBall5,redBall6,blueBall1,blueBall2;
+    /**
+     * id : 2018047
+     * open_time : 2018-04-26 22:13:27
+     * open_date : 2018/4/26
+     * red : 07,25,12,06,22,16
+     * blue : 07
+     */
 
-    public SsqBean() {
-        this.redBall1 = "01";
-        this.redBall2 = "01";
-        this.redBall3 = "31";
-        this.redBall4 = "29";
-        this.redBall5 = "18";
-        this.redBall6 = "17";
-        this.blueBall1 = "01";
-        this.blueBall2 = "";
+    private String id;
+    private String open_time;
+    private String open_date;
+    private String[] red;
+    private String[] blue;
+
+    public String getId() {
+        return id;
     }
 
-    public String getDate() {
-        return date;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getOpen_time() {
+        return open_time;
     }
 
-    public String getRedBall1() {
-        return redBall1;
+    public void setOpen_time(String open_time) {
+        this.open_time = open_time;
     }
 
-    public void setRedBall1(String redBall1) {
-        this.redBall1 = redBall1;
+    public String getOpen_date() {
+        return open_date;
     }
 
-    public String getRedBall2() {
-        return redBall2;
+    public void setOpen_date(String open_date) {
+        this.open_date = open_date;
     }
 
-    public void setRedBall2(String redBall2) {
-        this.redBall2 = redBall2;
+    public String[] getRed() {
+        return red;
     }
 
-    public String getRedBall3() {
-        return redBall3;
+    public void setRed(String red) {
+        this.red = red.split(",");
     }
 
-    public void setRedBall3(String redBall3) {
-        this.redBall3 = redBall3;
+    public String[] getBlue() {
+        return blue;
     }
 
-    public String getRedBall4() {
-        return redBall4;
-    }
-
-    public void setRedBall4(String redBall4) {
-        this.redBall4 = redBall4;
-    }
-
-    public String getRedBall5() {
-        return redBall5;
-    }
-
-    public void setRedBall5(String redBall5) {
-        this.redBall5 = redBall5;
-    }
-
-    public String getRedBall6() {
-        return redBall6;
-    }
-
-    public void setRedBall6(String redBall6) {
-        this.redBall6 = redBall6;
-    }
-
-    public String getBlueBall1() {
-        return blueBall1;
-    }
-
-    public void setBlueBall1(String blueBall1) {
-        this.blueBall1 = blueBall1;
-    }
-
-    public String getBlueBall2() {
-        return blueBall2;
-    }
-
-    public void setBlueBall2(String blueBall2) {
-        this.blueBall2 = blueBall2;
+    public void setBlue(String blue) {
+        this.blue = blue.split(",");
     }
 }

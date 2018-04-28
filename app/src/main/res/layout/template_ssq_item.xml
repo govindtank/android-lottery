@@ -21,6 +21,7 @@
 
 
             <TextView
+                android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="期数"
@@ -33,11 +34,12 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="开奖时间"
-                android:textColor="@color/app_black"
-                android:textSize="14sp" />
+                android:textColor="@color/app_gray"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <View style="@style/vDriver" />
@@ -64,6 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
+                        android:textSize="12sp"
                         android:text="红波区" />
 
                     <View style="@style/vDriver" />
@@ -168,6 +171,7 @@
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="30dp"
                         android:paddingVertical="5dp"
+                        android:textSize="12sp"
                         android:text="蓝波区" />
 
                     <View style="@style/vDriver" />

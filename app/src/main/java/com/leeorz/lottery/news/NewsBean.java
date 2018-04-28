@@ -7,22 +7,20 @@ package com.leeorz.lottery.news;
  * description:
  */
 public class NewsBean {
-    private String imagePath = "";
+    private String id = "";
+    private String img = "";
     private String title = "";
-    private long date = 0l;
+    private String time = "";
 
     public NewsBean() {
-        this.imagePath = "http://t2.hddhhn.com/uploads/tu/201804/9999/958521719c.jpg";
-        this.date = System.currentTimeMillis();
-        this.title = "这个是标题";
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImg() {
+        return img;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getTitle() {
@@ -33,11 +31,19 @@ public class NewsBean {
         this.title = title;
     }
 
-    public long getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

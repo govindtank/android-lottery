@@ -1,4 +1,4 @@
-package com.leeorz.lottery.ssq.analysis;
+package com.leeorz.lottery.news;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,11 @@ import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.base.BaseActivity;
 import com.leeorz.lib.widget.h5.H5WebView;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.api.FootBallApi;
 import com.leeorz.lottery.api.FootBallApiResult;
 import com.leeorz.lottery.api.PApi;
 import com.leeorz.lottery.bean.SsqDetailResultBean;
 import com.leeorz.lottery.constants.Constants;
-import com.leeorz.lottery.news.NewsDetailBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,10 +27,10 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * author: leeorz
  * email:378229364@qq.com
- * created on: 2018/4/25 下午6:28
+ * created on: 2018/4/27 下午6:12
  * description:
  */
-public class SsqAnalysisDetailActivity extends BaseActivity {
+public class NewsDetailActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -38,7 +38,7 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
     H5WebView webview;
 
     public static void gotoThis(Context context, String id) {
-        Intent intent = new Intent(context, SsqAnalysisDetailActivity.class);
+        Intent intent = new Intent(context, NewsDetailActivity.class);
         intent.putExtra(Constants.KEY_ID, id);
         context.startActivity(intent);
     }
@@ -46,19 +46,21 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ssq_analysis_detail);
+        setContentView(R.layout.activity_news_detail);
         ButterKnife.bind(this);
         initView();
-        getSsqAnalysisDetail(getIntent().getStringExtra(Constants.KEY_ID));
+
+        getNewsDetail(getIntent().getStringExtra(Constants.KEY_ID));
     }
 
-    private void initView() {
-        tvTitle.setText("预测详情");
-    }
-
-    private void getSsqAnalysisDetail(String id) {
+    /**
+     * 获取新闻详情
+     *
+     * @param id
+     */
+    private void getNewsDetail(String id) {
         PApi footBallApi = API.getInstance(PApi.class, PApi.HOST);
-        footBallApi.getSsqAnalysisDetail(id)
+        footBallApi.getNewsDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ApiObserver(new ApiCallback<NewsDetailBean>() {
@@ -74,6 +76,10 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
 
                     }
                 }));
+    }
+
+    private void initView() {
+        tvTitle.setText("详情");
     }
 
     @OnClick(R.id.iv_back)

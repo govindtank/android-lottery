@@ -4,6 +4,8 @@ import com.leeorz.lottery.bean.ColdHotIndexResultBean;
 import com.leeorz.lottery.bean.MatchAnalysisDataResultBean;
 import com.leeorz.lottery.bean.MatchDetailResultBean;
 import com.leeorz.lottery.bean.MatchDetailVideoResultBean;
+import com.leeorz.lottery.bean.MatchListResultBean;
+import com.leeorz.lottery.match.MatchBean;
 import com.leeorz.lottery.match.dynamic.DynamicCompensationBean;
 import com.leeorz.lottery.match.remind.RemindBean;
 
@@ -31,6 +33,7 @@ public interface FootBallApi {
 
     public static final String C_KEY = "180cb5ec5433cefa0e604df978699a4b";
     public static final String C_CK = "NjU2OTA1YzEzYzMxMTg4ZmM3NjVkMDc2MmM1YjlkNGRjZGIwNzM=";
+    public static final String MATCH_LIST_KEY = "c28d797bdf3f789e759150cdac45957a";
 
     public static final String REMIND_T1 = "1";
     public static final String REMIND_T2 = "2";
@@ -98,4 +101,23 @@ public interface FootBallApi {
     @FormUrlEncoded
     @POST("index.php?c_id=41112&c_type=2&c_cpid=2&suid=36ab3af9cc68d89996f4bbb3c8e7df13&quid=656905&imei=863254030931603&mac=02:00:00:00:00:00")
     Observable<FootBallApiResult<List<DynamicCompensationBean>>> getDynamicCompensation(@Field("t") String t, @Field("c_key") String c_key,@Field("c_ck") String c_ck);
+
+
+
+
+
+    /**
+     * 获取比赛列表
+     * @param t
+     * @param c_key
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("index.php?c_id=41000&c_type=2&c_cpid=2&suid=36ab3af9cc68d89996f4bbb3c8e7df13&quid=656905&imei=863254030931603&mac=02:00:00:00:00:00")
+    Observable<FootBallApiResult<MatchListResultBean>> getMatchList(@Field("t") String t,
+                                                                    @Field("c_key") String c_key,
+                                                                    @Field("mytime") String mytime,
+                                                                    @Field("cid") String cid,
+                                                                    @Field("stid") String stid,
+                                                                    @Field("c_ck") String c_ck);
 }

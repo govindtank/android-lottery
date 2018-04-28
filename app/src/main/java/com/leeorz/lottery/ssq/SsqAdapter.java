@@ -35,14 +35,16 @@ public class SsqAdapter extends BaseAdapter<SsqBean> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         SsqBean bean = data.get(position);
-        viewHolder.showBall(viewHolder.tvBlueBall1,bean.getBlueBall1());
-        viewHolder.showBall(viewHolder.tvBlueBall2,bean.getBlueBall2());
-        viewHolder.showBall(viewHolder.tvRedBall1,bean.getRedBall1());
-        viewHolder.showBall(viewHolder.tvRedBall2,bean.getRedBall2());
-        viewHolder.showBall(viewHolder.tvRedBall3,bean.getRedBall3());
-        viewHolder.showBall(viewHolder.tvRedBall4,bean.getRedBall4());
-        viewHolder.showBall(viewHolder.tvRedBall5,bean.getRedBall5());
-        viewHolder.showBall(viewHolder.tvRedBall6,bean.getRedBall6());
+        viewHolder.showBall(viewHolder.tvBlueBall1,bean.getBlue(),0);
+        viewHolder.showBall(viewHolder.tvBlueBall2,bean.getBlue(),1);
+        viewHolder.showBall(viewHolder.tvRedBall1,bean.getRed(),0);
+        viewHolder.showBall(viewHolder.tvRedBall2,bean.getRed(),1);
+        viewHolder.showBall(viewHolder.tvRedBall3,bean.getRed(),2);
+        viewHolder.showBall(viewHolder.tvRedBall4,bean.getRed(),3);
+        viewHolder.showBall(viewHolder.tvRedBall5,bean.getRed(),4);
+        viewHolder.showBall(viewHolder.tvRedBall6,bean.getRed(),5);
+        viewHolder.tvId.setText("第" + bean.getId() + "期");
+        viewHolder.tvDate.setText("开奖时间:" + bean.getOpen_time());
         return convertView;
     }
 
@@ -64,20 +66,22 @@ public class SsqAdapter extends BaseAdapter<SsqBean> {
         TextView tvBlueBall1;
         @BindView(R.id.tv_blue_ball2)
         TextView tvBlueBall2;
+        @BindView(R.id.tv_date)
+        TextView tvDate;
+        @BindView(R.id.tv_id)
+        TextView tvId;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
-        public void showBall(TextView textView,String ball){
-            if(TextUtils.isEmpty(ball)){
+        public void showBall(TextView textView,String[] ball,int index){
+            if(ball.length > index){
+                textView.setVisibility(View.VISIBLE);
+                textView.setText(ball[index]);
+            }else{
                 textView.setVisibility(View.GONE);
-                return;
             }
-
-            textView.setVisibility(View.VISIBLE);
-            textView.setText(ball);
-
         }
     }
 }

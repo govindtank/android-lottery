@@ -17,9 +17,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_lname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/app_black"
@@ -32,11 +34,12 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="比赛时间"
-                android:textColor="@color/app_black"
-                android:textSize="12sp" />
+                android:textColor="@color/app_gray"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <View style="@style/vDriver" />
@@ -58,10 +61,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="主队"
-                    android:textColor="@color/app_main_color"
+                    android:textColor="@color/app_gray"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tv_hname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/app_black"
@@ -82,11 +86,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/app_main_color"
+                    android:textColor="@color/app_gray"
                     android:text="客队"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tv_aname"
                     android:textColor="@color/app_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,174 +102,18 @@
 
         <View style="@style/vDriver" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="赢赔率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textColor="@color/app_main_color"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <View style="@style/hDriver" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="平赔率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <View style="@style/hDriver" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="负赔率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textColor="@color/app_green"
-                    android:textSize="11sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <View style="@style/vDriver" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="赢率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textColor="@color/app_main_color"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <View style="@style/hDriver" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="平率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <View style="@style/hDriver" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="负率"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.09"
-                    android:textColor="@color/app_green"
-                    android:textSize="11sp" />
-            </LinearLayout>
-        </LinearLayout>
-        <View style="@style/vDriver" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:padding="5dp"
             android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/app_black"
+            android:text="比分"/>
+        <View style="@style/vDriver" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -274,21 +123,13 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingVertical="5dp">
-
                 <TextView
+                    android:id="@+id/tv_hscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="比赛状态"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="胜"
+                    android:text="1.09"
                     android:textColor="@color/app_main_color"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <View style="@style/hDriver" />
@@ -302,21 +143,14 @@
                 android:paddingVertical="5dp">
 
                 <TextView
+                    android:id="@+id/tv_ascore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="比分"
-                    android:textColor="@color/app_black"
-                    android:textSize="11sp" />
-
-                <TextView
+                    android:text="1.09"
                     android:textColor="@color/app_main_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1:3"
-                    android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
+        <View style="@style/vDriver" />
     </LinearLayout>
 </LinearLayout>

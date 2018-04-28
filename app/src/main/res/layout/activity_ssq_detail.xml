@@ -8,6 +8,7 @@
     <include layout="@layout/include_header" />
 
     <TextView
+        android:id="@+id/tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
@@ -17,6 +18,7 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
@@ -60,15 +62,18 @@
                 android:orientation="horizontal">
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="本期销量" />
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_sale_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/app_main_color"
                 android:textSize="16sp"
+
                 android:text="123,131,312"/>
         </LinearLayout>
 
@@ -96,6 +101,7 @@
                     android:text="累计奖池" />
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_money_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/app_main_color"
@@ -109,6 +115,10 @@
         android:background="@color/app_main_color"
         android:layout_height="1dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
     <ListView
         android:background="@drawable/shape_ssq_list_content_background"
         android:id="@+id/lvDetail"
@@ -116,8 +126,8 @@
         android:divider="@color/app_driver"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content" />
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_analysis"
         android:background="@color/app_main_color"
