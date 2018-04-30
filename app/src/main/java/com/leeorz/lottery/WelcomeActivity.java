@@ -29,6 +29,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void onFinish() {
                 gotoActivity(MainActivity.class);
+                finish();
             }
         };
         timer.start();
