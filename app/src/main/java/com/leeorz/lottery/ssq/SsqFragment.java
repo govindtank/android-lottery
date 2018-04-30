@@ -94,7 +94,7 @@ public class SsqFragment extends BaseFragment implements OnRefreshListener,OnLoa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position != ssqAdapter.getCount()) {
-                    SsqDetailActivity.gotoThis(getContext(),ssqAdapter.getItem(position).getId());
+                    SsqDetailActivity.gotoThis(getActivity(),ssqAdapter.getItem(position).getId());
                 }
             }
         });

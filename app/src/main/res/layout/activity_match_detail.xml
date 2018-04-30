@@ -23,7 +23,8 @@
         android:background="@color/app_main_color"
         android:orientation="horizontal">
         <LinearLayout
-            android:paddingVertical="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
-            android:paddingVertical="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -65,7 +67,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:paddingVertical="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"

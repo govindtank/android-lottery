@@ -42,9 +42,9 @@ public class RefreshHeader extends BaseRefreshHeader {
 
     private void initView(){
         setContentView(R.layout.template_refresh_header);
-        tvRefresh = contentView.findViewById(R.id.tv_refresh);
-        llContent = contentView.findViewById(R.id.ll_content);
-        ivFootBall = contentView.findViewById(R.id.iv_football);
+        tvRefresh = (TextView) contentView.findViewById(R.id.tv_refresh);
+        llContent = (LinearLayout) contentView.findViewById(R.id.ll_content);
+        ivFootBall = (ImageView) contentView.findViewById(R.id.iv_football);
 
         this.rotateAnimation = new RotateAnimation(0.0F,360.0F, 1, 0.5F, 1, 0.5F);
         this.rotateAnimation.setRepeatCount(-1);

@@ -102,7 +102,7 @@ public class MatchFragment extends BaseFragment{
                 gotoActivity(DynamicCompensationActivity.class);
             }
         });
-        IndexBannerView banner = headerView.findViewById(R.id.banner);
+        IndexBannerView banner = (IndexBannerView) headerView.findViewById(R.id.banner);
 
         banner.setLayoutParams(new LinearLayout.LayoutParams(AppConfig.SCREEN_WIDTH, (int) (AppConfig.SCREEN_WIDTH * 0.5)));
         List<String> images = new ArrayList();

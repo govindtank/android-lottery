@@ -101,7 +101,7 @@ public class MatchDetailActivity extends BaseActivity {
     private void showAnalysisData(MatchAnalysisDataResultBean matchAnalysisDataResultBean) {
         //显示排名数据
         View leagueView = getLayoutInflater().inflate(R.layout.template_match_detail_league, null);
-        LinearLayout leagueContentLayout = leagueView.findViewById(R.id.ll_detail);
+        LinearLayout leagueContentLayout = (LinearLayout) leagueView.findViewById(R.id.ll_detail);
 
         for (MatchAnalysisDataResultBean.RanksBean bean : matchAnalysisDataResultBean.getRanks()) {
 
@@ -121,12 +121,12 @@ public class MatchDetailActivity extends BaseActivity {
     private View getRankView(MatchAnalysisDataResultBean.RanksBean.RanksDetailBean bean) {
         View childView = getLayoutInflater().inflate(R.layout.template_match_detail_league_item, null);
         TextView tv1, tv2, tv3, tv4, tv5, tv6;
-        tv1 = childView.findViewById(R.id.tv1);
-        tv2 = childView.findViewById(R.id.tv2);
-        tv3 = childView.findViewById(R.id.tv3);
-        tv4 = childView.findViewById(R.id.tv4);
-        tv5 = childView.findViewById(R.id.tv5);
-        tv6 = childView.findViewById(R.id.tv6);
+        tv1 = (TextView) childView.findViewById(R.id.tv1);
+        tv2 = (TextView) childView.findViewById(R.id.tv2);
+        tv3 = (TextView) childView.findViewById(R.id.tv3);
+        tv4 = (TextView) childView.findViewById(R.id.tv4);
+        tv5 = (TextView) childView.findViewById(R.id.tv5);
+        tv6 = (TextView) childView.findViewById(R.id.tv6);
         tv1.setText(bean.getStanding());
         tv2.setText(bean.getName());
         tv3.setText(bean.getLname());
@@ -141,10 +141,10 @@ public class MatchDetailActivity extends BaseActivity {
      */
     private void showHistory(String name, MatchAnalysisDataResultBean.TotalBean totalBean, List<MatchAnalysisDataResultBean.HistoryDetailBean> historyDetailBeanList) {
         View historyView = getLayoutInflater().inflate(R.layout.template_match_history, null);
-        LinearLayout contentLayout = historyView.findViewById(R.id.ll_detail);
-        TextView tvHistoryTitle = historyView.findViewById(R.id.tv_history_title);
+        LinearLayout contentLayout = (LinearLayout) historyView.findViewById(R.id.ll_detail);
+        TextView tvHistoryTitle = (TextView) historyView.findViewById(R.id.tv_history_title);
         tvHistoryTitle.setText(name + "历史交战");
-        TextView tvTotal = historyView.findViewById(R.id.tv_total);
+        TextView tvTotal = (TextView) historyView.findViewById(R.id.tv_total);
         tvTotal.setText(totalBean.getWin() + "胜 " + totalBean.getDraw() + "平 " + totalBean.getLost() + "负");
         for (MatchAnalysisDataResultBean.HistoryDetailBean bean : historyDetailBeanList) {
             contentLayout.addView(getHistoryItemView(name, bean));
@@ -156,12 +156,12 @@ public class MatchDetailActivity extends BaseActivity {
     private View getHistoryItemView(String name, MatchAnalysisDataResultBean.HistoryDetailBean bean) {
         View childView = getLayoutInflater().inflate(R.layout.template_match_history_item, null);
         TextView tv1, tv2, tvh, tv4, tva, tvs;
-        tv1 = childView.findViewById(R.id.tv1);
-        tv2 = childView.findViewById(R.id.tv2);
-        tvh = childView.findViewById(R.id.tvh);
-        tvs = childView.findViewById(R.id.tvs);
-        tva = childView.findViewById(R.id.tva);
-        tv4 = childView.findViewById(R.id.tv4);
+        tv1 = (TextView) childView.findViewById(R.id.tv1);
+        tv2 = (TextView) childView.findViewById(R.id.tv2);
+        tvh = (TextView) childView.findViewById(R.id.tvh);
+        tvs = (TextView) childView.findViewById(R.id.tvs);
+        tva = (TextView) childView.findViewById(R.id.tva);
+        tv4 = (TextView) childView.findViewById(R.id.tv4);
         tv1.setText(bean.getDate());
         tv2.setText(bean.getLeague());
         tvh.setText(bean.getHome());
@@ -189,10 +189,10 @@ public class MatchDetailActivity extends BaseActivity {
 
     private void showNote(MatchAnalysisDataResultBean bean) {
         View noteView = getLayoutInflater().inflate(R.layout.template_match_detail_note, null);
-        LinearLayout contentLayout = noteView.findViewById(R.id.ll_detail);
+        LinearLayout contentLayout = (LinearLayout) noteView.findViewById(R.id.ll_detail);
         for (String note : bean.getContent()) {
             View childView = getLayoutInflater().inflate(R.layout.template_match_detail_note_item, null);
-            TextView tvNote = childView.findViewById(R.id.tv_note);
+            TextView tvNote = (TextView) childView.findViewById(R.id.tv_note);
             tvNote.setText(note);
             contentLayout.addView(childView);
         }

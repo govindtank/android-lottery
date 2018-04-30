@@ -9,7 +9,8 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingVertical="10dp">
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
         <ImageView
             android:id="@+id/iv_football"

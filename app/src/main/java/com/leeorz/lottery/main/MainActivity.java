@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.leeorz.lib.base.BaseActivity;
+import com.leeorz.lib.utils.ToastUtil;
 import com.leeorz.lottery.R;
 import com.leeorz.lottery.match.MatchFragment;
 import com.leeorz.lottery.news.NewsFragment;
@@ -104,6 +105,21 @@ public class MainActivity extends BaseActivity {
                 showFragment(ssqFragment);
                 break;
         }
+    }
+
+
+    private Long lastClickBackTime = 0l;
+    private Long clickBackTime = 0l;
+
+    @Override
+    public void onBackPressed() {
+        clickBackTime = System.currentTimeMillis();
+        if (clickBackTime - lastClickBackTime > 2000) {
+            ToastUtil.showShort(getActivity(), "再点一下退出");
+        } else {
+            super.onBackPressed();
+        }
+        lastClickBackTime = clickBackTime;
     }
 
 }

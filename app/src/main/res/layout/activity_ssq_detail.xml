@@ -11,7 +11,8 @@
         android:id="@+id/tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:text="第18046期"
         android:textColor="@color/app_black"
@@ -21,7 +22,8 @@
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="开奖时间:04-12(周一) 20:32"
         android:textSize="12sp" />
 
@@ -80,7 +82,8 @@
         <View
             style="@style/hDriver"
             android:layout_width="1dp"
-            android:layout_marginVertical="3dp" />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp" />
 
         <LinearLayout
             android:layout_width="0dp"
