@@ -1,5 +1,6 @@
 package com.leeorz.lottery.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -760,7 +761,7 @@ public class MatchAnalysisDataResultBean {
          * title : 联赛积分排名
          * type : 4
          */
-
+        List<RanksDetailBean> data = new ArrayList();
         private RanksDetailBean homestanding;
         private RanksDetailBean awaystanding;
         private String title;
@@ -796,6 +797,14 @@ public class MatchAnalysisDataResultBean {
 
         public void setType(String type) {
             this.type = type;
+        }
+
+        public List<RanksDetailBean> getData() {
+            return data;
+        }
+
+        public void setData(List<RanksDetailBean> data) {
+            this.data = data;
         }
 
         public static class RanksDetailBean {

@@ -79,7 +79,7 @@ public interface FootBallApi {
      */
     @FormUrlEncoded
     @POST("index.php?c_id=41109&c_type=2&c_cpid=2&suid=36ab3af9cc68d89996f4bbb3c8e7df13&quid=656905&imei=863254030931603&mac=02:00:00:00:00:00")
-    Observable<FootBallApiResult<MatchDetailVideoResultBean>> getMatchDetailVideoHtml(@Field("fid") String fid, @Field("c_key") String c_key);
+    Observable<FootBallApiResult<List<MatchDetailVideoResultBean>>> getMatchDetailVideoHtml(@Field("fid") String fid, @Field("c_key") String c_key);
 
 
     /**

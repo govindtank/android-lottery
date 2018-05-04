@@ -3,6 +3,7 @@ package com.leeorz.lottery.match;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +23,7 @@ import com.leeorz.lottery.bean.MatchAnalysisDataResultBean;
 import com.leeorz.lottery.bean.MatchDetailResultBean;
 import com.leeorz.lottery.bean.MatchDetailVideoResultBean;
 import com.leeorz.lottery.constants.Constants;
+import com.leeorz.lottery.widget.LoadingDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -57,6 +59,7 @@ public class MatchDetailActivity extends BaseActivity {
     LinearLayout llDetail;
     @BindView(R.id.iv_video)
     ImageView ivVideo;
+    private LoadingDialog loadingDialog;
 
     public static void gotoThis(Context context, String fid) {
         Intent intent = new Intent(context, MatchDetailActivity.class);
@@ -99,26 +102,34 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
     private void showAnalysisData(MatchAnalysisDataResultBean matchAnalysisDataResultBean) {
-        //显示排名数据
-        View leagueView = getLayoutInflater().inflate(R.layout.template_match_detail_league, null);
-        LinearLayout leagueContentLayout = (LinearLayout) leagueView.findViewById(R.id.ll_detail);
-
         for (MatchAnalysisDataResultBean.RanksBean bean : matchAnalysisDataResultBean.getRanks()) {
+            //显示排名数据
+            View leagueView = getLayoutInflater().inflate(R.layout.template_match_detail_league, null);
+            LinearLayout leagueContentLayout = (LinearLayout) leagueView.findViewById(R.id.ll_detail);
+            TextView tv_match_name = leagueView.findViewById(R.id.tv_match_name);
 
-            leagueContentLayout.addView(getRankView(bean.getHomestanding()));
-            leagueContentLayout.addView(getRankView(bean.getAwaystanding()));
+            if(bean.getHomestanding() != null){
+                leagueContentLayout.addView(getRankView(bean.getHomestanding()));
+                leagueContentLayout.addView(getRankView(bean.getAwaystanding()));
+            }else{
+                for(MatchAnalysisDataResultBean.RanksBean.RanksDetailBean ranksDetailBean : bean.getData()){
+                    leagueContentLayout.addView(getRankView(ranksDetailBean));
+                }
+            }
+            llDetail.addView(leagueView);
         }
-
-        llDetail.addView(leagueView);
 
         showHistory(matchAnalysisDataResultBean.getHname(), matchAnalysisDataResultBean.getFuck_datatotal(), matchAnalysisDataResultBean.getFuck_datadetail());
         showHistory(matchAnalysisDataResultBean.getHname(), matchAnalysisDataResultBean.getHome_datatotal(), matchAnalysisDataResultBean.getHome_datadetail());
         showHistory(matchAnalysisDataResultBean.getAname(), matchAnalysisDataResultBean.getAway_datatotal(), matchAnalysisDataResultBean.getAway_datadetail());
 
         showNote(matchAnalysisDataResultBean);
+
+
     }
 
     private View getRankView(MatchAnalysisDataResultBean.RanksBean.RanksDetailBean bean) {
+
         View childView = getLayoutInflater().inflate(R.layout.template_match_detail_league_item, null);
         TextView tv1, tv2, tv3, tv4, tv5, tv6;
         tv1 = (TextView) childView.findViewById(R.id.tv1);
@@ -200,20 +211,24 @@ public class MatchDetailActivity extends BaseActivity {
         llDetail.addView(noteView);
     }
 
-    private void showVideoBtn(final MatchDetailVideoResultBean bean){
+    private void showVideoBtn(final List<MatchDetailVideoResultBean> list){
+        if(list == null)return;
+        if(list.size() == 0)return;
+
         ivVideo.setVisibility(View.VISIBLE);
         ivVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MatchDetailVideoResultBean bean = list.get(0);
                 WebActivity.gotoThis(getActivity(),bean.getName(),bean.getLink());
             }
         });
     }
 
     private void initView() {
+        loadingDialog = LoadingDialog.newInstance(getActivity());
         String fid = getIntent().getStringExtra(Constants.KEY_FID);
-
-
+        loadingDialog.show();
         FootBallApi footBallApi = API.getInstance(FootBallApi.class, FootBallApi.HOST);
         footBallApi.getMatchDetail(fid, FootBallApi.MATCH_DETAIL_KEY, FootBallApi.C_CK)
                 .subscribeOn(Schedulers.io())
@@ -230,7 +245,6 @@ public class MatchDetailActivity extends BaseActivity {
 
                     @Override
                     public void onFail(Throwable throwable) {
-
                     }
                 }));
 
@@ -245,13 +259,15 @@ public class MatchDetailActivity extends BaseActivity {
                     @Override
                     public void onSuccess(ApiResult<MatchAnalysisDataResultBean> apiResult) {
 //                        ToastUtil.showShort(getActivity(), ((FootBallApiResult) apiResult).getMsg());
+
                         showAnalysisData((MatchAnalysisDataResultBean) ((FootBallApiResult) apiResult).getData());
+                        loadingDialog.dismiss();
 
                     }
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
 
@@ -261,11 +277,11 @@ public class MatchDetailActivity extends BaseActivity {
         footBallApi.getMatchDetailVideoHtml(fid, FootBallApi.MATCH_VIDEO_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ApiObserver(new ApiCallback<MatchDetailVideoResultBean>() {
+                .subscribe(new ApiObserver(new ApiCallback<List<MatchDetailVideoResultBean>>() {
 
                     @Override
-                    public void onSuccess(ApiResult<MatchDetailVideoResultBean> apiResult) {
-                        showVideoBtn((MatchDetailVideoResultBean) ((FootBallApiResult) apiResult).getData());
+                    public void onSuccess(ApiResult<List<MatchDetailVideoResultBean>> apiResult) {
+                        showVideoBtn((List<MatchDetailVideoResultBean>) ((FootBallApiResult) apiResult).getData());
 
                     }
 

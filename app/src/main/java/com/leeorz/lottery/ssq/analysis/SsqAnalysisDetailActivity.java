@@ -17,6 +17,7 @@ import com.leeorz.lottery.api.PApi;
 import com.leeorz.lottery.bean.SsqDetailResultBean;
 import com.leeorz.lottery.constants.Constants;
 import com.leeorz.lottery.news.NewsDetailBean;
+import com.leeorz.lottery.widget.LoadingDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +37,7 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.webview)
     H5WebView webview;
+    private LoadingDialog loadingDialog;
 
     public static void gotoThis(Context context, String id) {
         Intent intent = new Intent(context, SsqAnalysisDetailActivity.class);
@@ -57,6 +59,7 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
     }
 
     private void getSsqAnalysisDetail(String id) {
+        loadingDialog.show();
         PApi footBallApi = API.getInstance(PApi.class, PApi.HOST);
         footBallApi.getSsqAnalysisDetail(id)
                 .subscribeOn(Schedulers.io())
@@ -65,13 +68,14 @@ public class SsqAnalysisDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ApiResult<NewsDetailBean> apiResult) {
+                        loadingDialog.dismiss();
                         NewsDetailBean bean = (NewsDetailBean) ((FootBallApiResult)apiResult).getData();
                         webview.loadData(bean.getContent(),"text/html","utf=8");
                     }
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
     }

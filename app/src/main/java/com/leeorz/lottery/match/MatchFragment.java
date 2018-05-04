@@ -26,6 +26,7 @@ import com.leeorz.lottery.bean.MatchListResultBean;
 import com.leeorz.lottery.match.dynamic.DynamicCompensationActivity;
 import com.leeorz.lottery.match.remind.RemindActivity;
 import com.leeorz.lottery.widget.IndexBannerView;
+import com.leeorz.lottery.widget.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,7 @@ public class MatchFragment extends BaseFragment{
 
     private MatchAdapter matchAdapter;
     private List<MatchBean> matchList = new ArrayList();
+    private LoadingDialog loadingDialog;
 
     public static MatchFragment newInstance() {
 
@@ -81,6 +83,7 @@ public class MatchFragment extends BaseFragment{
      */
     private void initView() {
         tvTitle.setText("赛事");
+        loadingDialog = LoadingDialog.newInstance(getActivity());
         ivBack.setVisibility(View.GONE);
 
         View headerView = mInflater.inflate(R.layout.header_match_banner,null);
@@ -144,6 +147,7 @@ public class MatchFragment extends BaseFragment{
     }
 
     private void getMatchList(){
+        loadingDialog.show();
         FootBallApi footBallApi = API.getInstance(FootBallApi.class, FootBallApi.HOST);
         footBallApi.getMatchList("1",FootBallApi.MATCH_LIST_KEY,String.valueOf(System.currentTimeMillis()),"3","1",FootBallApi.C_CK)
                 .subscribeOn(Schedulers.io())
@@ -152,14 +156,14 @@ public class MatchFragment extends BaseFragment{
 
                     @Override
                     public void onSuccess(ApiResult<MatchListResultBean> apiResult) {
-
+                        loadingDialog.dismiss();
                         matchList.addAll(((MatchListResultBean) ((FootBallApiResult) apiResult).getData()).getList());
                         matchAdapter.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
     }

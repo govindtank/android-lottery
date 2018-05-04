@@ -27,6 +27,7 @@ import com.leeorz.lottery.bean.SsqDetailResultBean;
 import com.leeorz.lottery.constants.Constants;
 import com.leeorz.lottery.ssq.analysis.SsqAnalysisActivity;
 import com.leeorz.lottery.ssq.analysis.SsqAnalysisDetailActivity;
+import com.leeorz.lottery.widget.LoadingDialog;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class SsqDetailActivity extends BaseActivity {
     TextView tvSaleCount;
     @BindView(R.id.tv_money_total)
     TextView tvMoneyTotal;
-
+    private LoadingDialog loadingDialog;
     private String id = "";
 
     public static void gotoThis(Context context, String id) {
@@ -92,6 +93,7 @@ public class SsqDetailActivity extends BaseActivity {
     }
 
     private void getSsqDetail(String id) {
+        loadingDialog.show();
         PApi footBallApi = API.getInstance(PApi.class, PApi.HOST);
         footBallApi.getSsqDetail(id)
                 .subscribeOn(Schedulers.io())
@@ -100,6 +102,7 @@ public class SsqDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ApiResult<SsqDetailResultBean> apiResult) {
+                        loadingDialog.dismiss();
                         SsqDetailResultBean bean = (SsqDetailResultBean) ((FootBallApiResult) apiResult).getData();
                         addBall(bean.getRed().split(","), true);
                         addBall(bean.getBlue().split(","), false);
@@ -123,14 +126,14 @@ public class SsqDetailActivity extends BaseActivity {
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
     }
 
     private void initView() {
         tvTitle.setText("双色球中奖详情");
-
+        loadingDialog = LoadingDialog.newInstance(getActivity());
         lvDetail.addHeaderView(View.inflate(getActivity(), R.layout.header_ssq_detail, null));
     }
 

@@ -27,6 +27,7 @@ import com.leeorz.lottery.api.PApi;
 import com.leeorz.lottery.bean.SsqAnalysisBean;
 import com.leeorz.lottery.constants.Constants;
 import com.leeorz.lottery.news.NewsBean;
+import com.leeorz.lottery.widget.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public class SsqAnalysisActivity extends BaseActivity implements OnLoadMoreListe
     private List<SsqAnalysisBean> analysisList = new ArrayList();
 
     private String ssqId;
+    private LoadingDialog loadingDialog;
 
     public static void gotoThis(Context context,String ssqId){
         Intent intent = new Intent(context,SsqAnalysisActivity.class);
@@ -79,6 +81,7 @@ public class SsqAnalysisActivity extends BaseActivity implements OnLoadMoreListe
         }else{
             tvTitle.setText("第" +ssqId + "期双色球分析");
         }
+        loadingDialog = new LoadingDialog(getActivity());
 
 
         analysisListAdapter = new AnalysisListAdapter(getActivity());
@@ -103,6 +106,7 @@ public class SsqAnalysisActivity extends BaseActivity implements OnLoadMoreListe
     }
 
     private void getList(final String time){
+        loadingDialog.show();
         PApi footBallApi = API.getInstance(PApi.class, PApi.HOST);
         Observable<FootBallApiResult<List<SsqAnalysisBean>>> observable;
         if(TextUtils.isEmpty(ssqId)){
@@ -116,6 +120,7 @@ public class SsqAnalysisActivity extends BaseActivity implements OnLoadMoreListe
 
                     @Override
                     public void onSuccess(ApiResult<List<SsqAnalysisBean>> apiResult) {
+                        loadingDialog.dismiss();
                         if(time.equals("0")){
                             analysisList.clear();
                         }
@@ -127,7 +132,7 @@ public class SsqAnalysisActivity extends BaseActivity implements OnLoadMoreListe
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
     }

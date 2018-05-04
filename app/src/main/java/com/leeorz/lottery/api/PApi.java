@@ -87,4 +87,13 @@ public interface PApi {
     @FormUrlEncoded
     @POST("news/info")
     Observable<FootBallApiResult<NewsDetailBean>> getNewsDetail(@Field("id") String id);
+
+    /**
+     * 是否关闭APP
+     * @param id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("app_auth")
+    Observable<FootBallApiResult<String>> checkAppAuth(@Field("appId") String id);
 }

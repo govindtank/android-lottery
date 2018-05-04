@@ -17,6 +17,7 @@ import com.leeorz.lottery.api.FootBallApiResult;
 import com.leeorz.lottery.api.PApi;
 import com.leeorz.lottery.bean.SsqDetailResultBean;
 import com.leeorz.lottery.constants.Constants;
+import com.leeorz.lottery.widget.LoadingDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +37,7 @@ public class NewsDetailActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.webview)
     H5WebView webview;
+    private LoadingDialog loadingDialog;
 
     public static void gotoThis(Context context, String id) {
         Intent intent = new Intent(context, NewsDetailActivity.class);
@@ -60,6 +62,7 @@ public class NewsDetailActivity extends BaseActivity {
      */
     private void getNewsDetail(String id) {
         PApi footBallApi = API.getInstance(PApi.class, PApi.HOST);
+        loadingDialog.show();
         footBallApi.getNewsDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -67,19 +70,21 @@ public class NewsDetailActivity extends BaseActivity {
 
                     @Override
                     public void onSuccess(ApiResult<NewsDetailBean> apiResult) {
+                        loadingDialog.dismiss();
                         NewsDetailBean bean = (NewsDetailBean) ((FootBallApiResult)apiResult).getData();
                         webview.loadData(bean.getContent(),"text/html","utf=8");
                     }
 
                     @Override
                     public void onFail(Throwable throwable) {
-
+                        loadingDialog.dismiss();
                     }
                 }));
     }
 
     private void initView() {
         tvTitle.setText("详情");
+        loadingDialog = LoadingDialog.newInstance(getActivity());
     }
 
     @OnClick(R.id.iv_back)

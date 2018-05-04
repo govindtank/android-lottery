@@ -14,7 +14,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-        android:text="第18046期"
+        android:text="第--期"
         android:textColor="@color/app_black"
         android:textSize="16sp" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="开奖时间:04-12(周一) 20:32"
+        android:text="开奖时间:--"
         android:textSize="12sp" />
 
     <HorizontalScrollView
@@ -76,7 +76,7 @@
                 android:textColor="@color/app_main_color"
                 android:textSize="16sp"
 
-                android:text="123,131,312"/>
+                android:text="--"/>
         </LinearLayout>
 
         <View
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/app_main_color"
                 android:textSize="16sp"
-                android:text="123,131,312"/>
+                android:text="--"/>
         </LinearLayout>
     </LinearLayout>
     <View
