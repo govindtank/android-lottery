@@ -2,9 +2,7 @@ package com.leeorz.lottery.api;
 
 import com.leeorz.lottery.bean.SsqAnalysisBean;
 import com.leeorz.lottery.bean.SsqDetailResultBean;
-import com.leeorz.lottery.match.dynamic.DynamicCompensationBean;
 import com.leeorz.lottery.news.NewsBean;
-import com.leeorz.lottery.news.NewsDetailActivity;
 import com.leeorz.lottery.news.NewsDetailBean;
 import com.leeorz.lottery.ssq.SsqBean;
 
@@ -56,7 +54,7 @@ public interface PApi {
     Observable<FootBallApiResult<List<SsqAnalysisBean>>> getSsqAnalysisList(@Field("time") String time, @Field("page_size") int pageSize);
     @FormUrlEncoded
     @POST("zhuanjia/index")
-    Observable<FootBallApiResult<List<SsqAnalysisBean>>> getSsqAnalysisList(@Field("time") String tuime, @Field("ssqid")String ssqId, @Field("page_size") int pageSize);
+    Observable<FootBallApiResult<List<SsqAnalysisBean>>> getSsqAnalysisList(@Field("time") String tuime, @Field("ssqid") String ssqId, @Field("page_size") int pageSize);
 
     /**
      * 获取专家预测详情

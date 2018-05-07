@@ -25,11 +25,11 @@ import butterknife.OnClick;
 public class WebActivity extends BaseActivity {
 
 
-    @BindView(R.id.iv_back)
+    @BindView(R2.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.webview)
+    @BindView(R2.id.webview)
     H5WebView webview;
 
     public static void gotoThis(Context context, String title, String url) {
@@ -74,7 +74,7 @@ public class WebActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.iv_back)
+    @OnClick(R2.id.iv_back)
     public void onViewClicked() {
         finish();
     }

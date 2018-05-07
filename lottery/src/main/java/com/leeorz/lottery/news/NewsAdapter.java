@@ -8,11 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseAdapter;
-import com.leeorz.lib.utils.DateUtil;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.R2;
 import com.squareup.picasso.Picasso;
-
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,11 +48,11 @@ public class NewsAdapter extends BaseAdapter<NewsBean> {
     }
 
     static class ViewHolder {
-        @BindView(R.id.iv_image)
+        @BindView(R2.id.iv_image)
         ImageView ivImage;
-        @BindView(R.id.tv_title)
+        @BindView(R2.id.tv_title)
         TextView tvTitle;
-        @BindView(R.id.tv_date)
+        @BindView(R2.id.tv_date)
         TextView tvDate;
 
         ViewHolder(View view) {

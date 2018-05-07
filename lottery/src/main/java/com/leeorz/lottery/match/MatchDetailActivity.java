@@ -3,7 +3,6 @@ package com.leeorz.lottery.match;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,8 +13,8 @@ import com.leeorz.lib.api.ApiCallback;
 import com.leeorz.lib.api.ApiObserver;
 import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.base.BaseActivity;
-import com.leeorz.lib.utils.ToastUtil;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.R2;
 import com.leeorz.lottery.WebActivity;
 import com.leeorz.lottery.api.FootBallApi;
 import com.leeorz.lottery.api.FootBallApiResult;
@@ -41,23 +40,23 @@ import io.reactivex.schedulers.Schedulers;
  * description:
  */
 public class MatchDetailActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.iv_home)
+    @BindView(R2.id.iv_home)
     ImageView ivHome;
-    @BindView(R.id.tv_home)
+    @BindView(R2.id.tv_home)
     TextView tvHome;
-    @BindView(R.id.tv_detail_date)
+    @BindView(R2.id.tv_detail_date)
     TextView tvDetailDate;
-    @BindView(R.id.tv_status)
+    @BindView(R2.id.tv_status)
     TextView tvStatus;
-    @BindView(R.id.iv_aways)
+    @BindView(R2.id.iv_aways)
     ImageView ivAways;
-    @BindView(R.id.tv_aways)
+    @BindView(R2.id.tv_aways)
     TextView tvAways;
-    @BindView(R.id.ll_detail)
+    @BindView(R2.id.ll_detail)
     LinearLayout llDetail;
-    @BindView(R.id.iv_video)
+    @BindView(R2.id.iv_video)
     ImageView ivVideo;
     private LoadingDialog loadingDialog;
 
@@ -106,7 +105,7 @@ public class MatchDetailActivity extends BaseActivity {
             //显示排名数据
             View leagueView = getLayoutInflater().inflate(R.layout.template_match_detail_league, null);
             LinearLayout leagueContentLayout = (LinearLayout) leagueView.findViewById(R.id.ll_detail);
-            TextView tv_match_name = leagueView.findViewById(R.id.tv_match_name);
+            TextView tv_match_name = (TextView) leagueView.findViewById(R.id.tv_match_name);
 
             if(bean.getHomestanding() != null){
                 leagueContentLayout.addView(getRankView(bean.getHomestanding()));
@@ -293,7 +292,7 @@ public class MatchDetailActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.iv_back)
+    @OnClick(R2.id.iv_back)
     public void onViewClicked() {
         finish();
     }

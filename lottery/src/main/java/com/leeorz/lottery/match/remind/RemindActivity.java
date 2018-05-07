@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.leeorz.lib.base.BaseActivity;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.R2;
 import com.leeorz.lottery.api.FootBallApi;
 
 import butterknife.BindView;
@@ -24,17 +25,17 @@ import butterknife.OnClick;
  */
 public class RemindActivity extends BaseActivity {
 
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_module1)
+    @BindView(R2.id.tv_module1)
     TextView tvModule1;
-    @BindView(R.id.tv_module2)
+    @BindView(R2.id.tv_module2)
     TextView tvModule2;
-    @BindView(R.id.tv_module3)
+    @BindView(R2.id.tv_module3)
     TextView tvModule3;
-    @BindView(R.id.iv_back)
+    @BindView(R2.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.fl_content)
+    @BindView(R2.id.fl_content)
     FrameLayout flContent;
 
     private RemindFragment remindFragment1,remindFragment2,remindFragment3;
@@ -61,30 +62,26 @@ public class RemindActivity extends BaseActivity {
         tvModule1.performClick();
     }
 
-    @OnClick(R.id.iv_back)
+    @OnClick(R2.id.iv_back)
     public void onViewClicked() {
         finish();
     }
 
-    @OnClick({R.id.tv_module1, R.id.tv_module2, R.id.tv_module3})
+    @OnClick({R2.id.tv_module1, R2.id.tv_module2, R2.id.tv_module3})
     public void onViewClicked(View view) {
         tvModule1.setTextColor(getResources().getColor(R.color.app_black));
         tvModule2.setTextColor(getResources().getColor(R.color.app_black));
         tvModule3.setTextColor(getResources().getColor(R.color.app_black));
         int id = view.getId();
-        switch (id) {
-            case R.id.tv_module1:
-                tvModule1.setTextColor(getResources().getColor(R.color.app_main_color));
-                showTargetFragment(getTargetFragment(id),TAG_REMIND_FRAGMENT1);
-                break;
-            case R.id.tv_module2:
-                tvModule2.setTextColor(getResources().getColor(R.color.app_main_color));
-                showTargetFragment(getTargetFragment(id),TAG_REMIND_FRAGMENT2);
-                break;
-            case R.id.tv_module3:
-                tvModule3.setTextColor(getResources().getColor(R.color.app_main_color));
-                showTargetFragment(getTargetFragment(id),TAG_REMIND_FRAGMENT3);
-                break;
+        if(id == R.id.tv_module1) {
+            tvModule1.setTextColor(getResources().getColor(R.color.app_main_color));
+            showTargetFragment(getTargetFragment(id), TAG_REMIND_FRAGMENT1);
+        }else if(id == R.id.tv_module2) {
+            tvModule2.setTextColor(getResources().getColor(R.color.app_main_color));
+            showTargetFragment(getTargetFragment(id),TAG_REMIND_FRAGMENT2);
+        }else if(id == R.id.tv_module3) {
+            tvModule3.setTextColor(getResources().getColor(R.color.app_main_color));
+            showTargetFragment(getTargetFragment(id),TAG_REMIND_FRAGMENT3);
         }
     }
 
@@ -105,17 +102,18 @@ public class RemindActivity extends BaseActivity {
     }
 
     private Fragment getTargetFragment(int id){
-        switch (id) {
-            case R.id.tv_module1:
-                if(remindFragment1 == null)remindFragment1 = RemindFragment.newInstance(FootBallApi.REMIND_T1);
-                return remindFragment1;
-            case R.id.tv_module2:
+        if(id == R.id.tv_module1) {
+            if (remindFragment1 == null)
+                remindFragment1 = RemindFragment.newInstance(FootBallApi.REMIND_T1);
+            return remindFragment1;
+        }else if(id == R.id.tv_module2){
                 if(remindFragment2 == null)remindFragment2 = RemindFragment.newInstance(FootBallApi.REMIND_T2);
                 return remindFragment2;
-            case R.id.tv_module3:
-                if(remindFragment3 == null)remindFragment3 = RemindFragment.newInstance(FootBallApi.REMIND_T3);
-                return remindFragment3;
-                default:return null;
+        } else if(id ==  R.id.tv_module3){
+            if(remindFragment3 == null)remindFragment3 = RemindFragment.newInstance(FootBallApi.REMIND_T3);
+            return remindFragment3;
+
         }
+        return null;
     }
 }

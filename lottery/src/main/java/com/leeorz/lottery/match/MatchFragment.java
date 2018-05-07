@@ -19,6 +19,7 @@ import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.app.AppConfig;
 import com.leeorz.lib.base.BaseFragment;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.R2;
 import com.leeorz.lottery.WebActivity;
 import com.leeorz.lottery.api.FootBallApi;
 import com.leeorz.lottery.api.FootBallApiResult;
@@ -47,11 +48,11 @@ public class MatchFragment extends BaseFragment{
 
 
     Unbinder unbinder;
-    @BindView(R.id.lv_content)
+    @BindView(R2.id.lv_content)
     ListView lvContent;
-    @BindView(R.id.iv_back)
+    @BindView(R2.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
 
     private MatchAdapter matchAdapter;

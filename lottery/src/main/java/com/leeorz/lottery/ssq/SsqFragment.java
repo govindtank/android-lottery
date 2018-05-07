@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.leeorz.lib.api.API;
@@ -20,10 +19,9 @@ import com.leeorz.lib.widget.loadmore.OnLoadMoreListener;
 import com.leeorz.lib.widget.refresh.OnRefreshListener;
 import com.leeorz.lib.widget.refresh.RefreshListView;
 import com.leeorz.lottery.R;
-import com.leeorz.lottery.api.FootBallApi;
+import com.leeorz.lottery.R2;
 import com.leeorz.lottery.api.FootBallApiResult;
 import com.leeorz.lottery.api.PApi;
-import com.leeorz.lottery.match.remind.RemindBean;
 import com.leeorz.lottery.ssq.analysis.SsqAnalysisActivity;
 import com.leeorz.lottery.ssq.detail.SsqDetailActivity;
 import com.leeorz.lottery.widget.RefreshHeader;
@@ -45,12 +43,12 @@ import io.reactivex.schedulers.Schedulers;
  * description:
  */
 public class SsqFragment extends BaseFragment implements OnRefreshListener,OnLoadMoreListener{
-    @BindView(R.id.lv_content)
+    @BindView(R2.id.lv_content)
     RefreshListView lvContent;
     Unbinder unbinder;
-    @BindView(R.id.tv_right)
+    @BindView(R2.id.tv_right)
     TextView tv_right;
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
 
     private SsqAdapter ssqAdapter;
@@ -136,7 +134,7 @@ public class SsqFragment extends BaseFragment implements OnRefreshListener,OnLoa
         unbinder.unbind();
     }
 
-    @OnClick(R.id.tv_right)
+    @OnClick(R2.id.tv_right)
     public void onViewClicked() {
         gotoActivity(SsqAnalysisActivity.class);
     }

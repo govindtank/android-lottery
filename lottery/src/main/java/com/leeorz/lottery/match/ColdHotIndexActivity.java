@@ -15,8 +15,8 @@ import com.leeorz.lib.api.ApiResult;
 import com.leeorz.lib.base.BaseActivity;
 import com.leeorz.lib.base.BaseAdapter;
 import com.leeorz.lib.utils.StrUtil;
-import com.leeorz.lib.utils.ToastUtil;
 import com.leeorz.lottery.R;
+import com.leeorz.lottery.R2;
 import com.leeorz.lottery.api.FootBallApi;
 import com.leeorz.lottery.api.FootBallApiResult;
 import com.leeorz.lottery.bean.ColdHotIndexResultBean;
@@ -36,9 +36,9 @@ import io.reactivex.schedulers.Schedulers;
  * description:冷热指数
  */
 public class ColdHotIndexActivity extends BaseActivity {
-    @BindView(R.id.tv_title)
+    @BindView(R2.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.lv_content)
+    @BindView(R2.id.lv_content)
     ListView lvContent;
 
     private ColdHotIndexResultAdapter coldHotIndexResultAdapter;
@@ -95,7 +95,7 @@ public class ColdHotIndexActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.iv_back)
+    @OnClick(R2.id.iv_back)
     public void onViewClicked() {
         finish();
     }
@@ -140,31 +140,31 @@ public class ColdHotIndexActivity extends BaseActivity {
     }
 
     static class ViewHolder {
-        @BindView(R.id.tv_column_1_1)
+        @BindView(R2.id.tv_column_1_1)
         TextView tvColumn11;
-        @BindView(R.id.tv_column_1_2)
+        @BindView(R2.id.tv_column_1_2)
         TextView tvColumn12;
-        @BindView(R.id.tv_column_1_3)
+        @BindView(R2.id.tv_column_1_3)
         TextView tvColumn13;
-        @BindView(R.id.tv_column_1_4)
+        @BindView(R2.id.tv_column_1_4)
         TextView tvColumn14;
-        @BindView(R.id.tv_column_2_1)
+        @BindView(R2.id.tv_column_2_1)
         TextView tvColumn21;
-        @BindView(R.id.tv_column_2_2)
+        @BindView(R2.id.tv_column_2_2)
         TextView tvColumn22;
-        @BindView(R.id.tv_column_2_3)
+        @BindView(R2.id.tv_column_2_3)
         TextView tvColumn23;
-        @BindView(R.id.tv_column_2_4)
+        @BindView(R2.id.tv_column_2_4)
         TextView tvColumn24;
-        @BindView(R.id.tv_column_3_1)
+        @BindView(R2.id.tv_column_3_1)
         TextView tvColumn31;
-        @BindView(R.id.tv_column_3_2)
+        @BindView(R2.id.tv_column_3_2)
         TextView tvColumn32;
-        @BindView(R.id.tv_column_3_3)
+        @BindView(R2.id.tv_column_3_3)
         TextView tvColumn33;
-        @BindView(R.id.tv_column_3_4)
+        @BindView(R2.id.tv_column_3_4)
         TextView tvColumn34;
-        @BindView(R.id.tv_date)
+        @BindView(R2.id.tv_date)
         TextView tvDate;
 
         ViewHolder(View view) {
